@@ -1,0 +1,46 @@
+seed: 42
+
+data:
+  root: "data"
+  preprocessed_root: "preprocessed"
+  cohorts: ["PPMI", "NEUROCON", "TaoWu"]
+  manifest_dir: "manifests"
+  split_dir: "splits"
+  label_map: {"HC": 0, "PD": 1}
+
+preprocess:
+  target_spacing: [1.0, 1.0, 1.0]
+  target_size: [128, 128, 128]
+  use_n4_bias_correction: false
+
+model:
+  in_channels: 1
+  patch_size: 8
+  embed_dim: 256
+  depth_L: 4
+  blocks_per_stage: [2, 2, 4, 2]
+  encoder_dropout: 0.10
+  refinement:
+    reduction_ratio: 16
+    zscore_on_refined: true
+  classifier:
+    hidden_dim: 128
+    dropout: 0.20
+
+train:
+  batch_size: 2
+  num_workers: 2
+  max_epochs: 30
+  lr: 1.0e-4
+  weight_decay: 1.0e-2
+  grad_clip: 1.0
+  amp: true
+  early_stop_patience: 8
+  warmup_epochs: 1
+
+augment:
+  enable: true
+  rotate_deg: 10
+  translate_vox: 5
+  scale_range: [0.95, 1.05]
+  noise_std: 0.01
