@@ -1,6 +1,6 @@
 # Parkinson’s Disease Volumetric Foundation Classifier — Reference Implementation
 
-This repo is a **complete, runnable** Python implementation of the workflow described in the paper:
+This repo is a Python implementation of the workflow described in the paper:
 - MRI preprocessing (resample, normalize, crop/pad; optional N4 bias correction)
 - Patch embedding + hierarchical encoder
 - Discriminative feature refinement (channel gating + normalization)
